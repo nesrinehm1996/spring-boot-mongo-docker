@@ -27,22 +27,14 @@ pipeline {
         }
 	     stage('Docker push image'){
             steps{
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-          docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB_CREDENTIALS') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-               //withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                 //       sh "docker login -u nesrinehm1996 -p ${DOCKER_HUB_CREDENTIALS}" 
-	   //}
-		
-		//        sh "docker push nesrinehm1996/spring-boot-mongo "
+        
+               withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+                       sh "docker login -u nesrinehm1996 -p ${DOCKER_HUB_CREDENTIALS}" 
+		       sh "docker push nesrinehm1996/spring-boot-mongo "
 	            
 	     }
-	    }
-	     }
+	        }
+	                   }
 
 	    stage('Deploy app') {
      steps {
