@@ -20,8 +20,8 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-               // sh "docker build . -t nesrinehm1996/spring-boot-mongo-docker:${DOCKER_TAG}"
-		  sh "docker build -t nesrinehm1996/spring-boot-mongo ."  
+                sh "docker build . -t nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}"
+		  //sh "docker build -t nesrinehm1996/spring-boot-mongo ."  
             }
 		
         }
