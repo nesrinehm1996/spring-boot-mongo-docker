@@ -2,7 +2,7 @@ pipeline {
     agent any
 	   tools {
         // Note: This should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
-        maven "apache-maven-3.6.3" 
+        maven "maven" 
     }
     environment{
         DOCKER_TAG=getDockerTag()
