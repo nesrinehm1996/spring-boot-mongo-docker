@@ -41,6 +41,7 @@ pipeline {
 		//        sh "docker push nesrinehm1996/spring-boot-mongo "
 	            
 	     }
+	    }
 	     }
 
 	    stage('Deploy app') {
