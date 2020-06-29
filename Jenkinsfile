@@ -31,8 +31,8 @@ pipeline {
 		//	    sh "docker push nesrinehm1996/spring-boot-mongo-docker:${DOCKER_TAG}"
 	     stage('Push image') {
           steps{
-                 withDockerRegistry([ credentialsId: "DOCKER_HUB_CREDENTIALS", url: "https://registry.hub.docker.com/" ]) {
-                 bat "docker push nesrinehm1996/spring-boot-mongo-docker:build"
+                 withDockerRegistry([ credentialsId: "dockerhub", url: "https://registry.hub.docker.com/" ]) {
+                    bat "docker push nesrinehm1996/spring-boot-mongo-docker:build"
         }
 	            
 	     //}
