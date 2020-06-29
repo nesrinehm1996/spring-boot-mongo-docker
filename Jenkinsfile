@@ -29,15 +29,23 @@ pipeline {
 		//    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
 		//	    sh "docker login -u nesrinehm1996 -p ${DOCKER_HUB_CREDENTIALS}" 
 		//	    sh "docker push nesrinehm1996/spring-boot-mongo-docker:${DOCKER_TAG}"
-	     stage('Push image') {
-          steps{
-                 withDockerRegistry([ credentialsId: "dockerhub", url: "https://registry.hub.docker.com/" ]) {
-                    bat "docker push nesrinehm1996/spring-boot-mongo-docker:build"
+	    //stage('Push image') {
+          
+         //        withDockerRegistry([ credentialsId: "dockerhub", url: "https://registry.hub.docker.com/" ]) {
+           //         bat "docker push nesrinehm1996/spring-boot-mongo-docker:build"
+			 
+			 stage('Upload Image to DockerHub'){
+		   steps{
+              withCredentials([string(credentialsId: 'dockerhub', variable: 'password')]) {
+              sh "docker login -u nesrinehm1996 -p ${password}"
+                    }
+              sh 'docker push nesrinehm1996/spring-boot-mongo-docker'
+               }
         }
 	            
 	     //}
-	        }
-	                   }
+	       // }
+	         //          }
 
 	    stage('Deploy app') {
      steps {
