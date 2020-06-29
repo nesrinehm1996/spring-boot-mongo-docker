@@ -35,7 +35,7 @@ pipeline {
                  bat "docker push nesrinehm1996/spring-boot-mongo-docker:build"
         }
 	            
-	     }
+	     //}
 	        }
 	                   }
 
