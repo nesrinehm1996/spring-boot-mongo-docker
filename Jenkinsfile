@@ -26,10 +26,15 @@ pipeline {
         }
 	     stage('Docker push image'){
             steps{
+		    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+			    sh "docker login -u nesrinehm1996 -p ${DOCKER_HUB_CREDENTIALS}" 
+			    sh "docker push nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}"
+	    // stage('Docker push image'){
+            //steps{
         
-               withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                       sh "docker login -u nesrinehm1996 -p ${albert saif 1996}"
-		       sh "docker push nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}"
+              // withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+                //       sh "docker login -u nesrinehm1996 -p ${albert saif 1996}"
+		  //     sh "docker push nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}"
 	            
 	     }
 	        }
