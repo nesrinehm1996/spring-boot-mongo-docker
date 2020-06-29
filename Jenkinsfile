@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                sh "docker build . -t nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}" 
+                sh "docker build . -t nesrinehm1996/spring-boot-mongo-docker:${DOCKER_TAG}" 
             }
 		
         }
@@ -28,7 +28,7 @@ pipeline {
             steps{
 		    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
 			    sh "docker login -u nesrinehm1996 -p ${DOCKER_HUB_CREDENTIALS}" 
-			    sh "docker push nesrinehm1996/spring-boot-mongo:${DOCKER_TAG}"
+			    sh "docker push nesrinehm1996/spring-boot-mongo-docker:${DOCKER_TAG}"
 	    // stage('Docker push image'){
             //steps{
         
