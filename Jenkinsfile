@@ -53,7 +53,7 @@ pipeline {
     
                kubernetesDeploy(
 		       configs: 'springBootMongo.yml',
-		       kubeconfigId: 'kub-cluster-config',
+		       kubeconfigId: 'mykubconfig',
 		       enableConfigSubstitution: true
 		       )
 	    }    
